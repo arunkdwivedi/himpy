@@ -56,7 +56,7 @@ const missions = [
         worldLabel: "World 1",
         xp: 50,
         reward: "🛸",
-        desc: "Welcome, space cadet! Your spaceship computer is silent. Wake it up by making it say something. In Python, <b>print()</b> sends a message to your screen.",
+        desc: "Welcome, space cadet! Your spaceship computer is silent. Wake it up by making it say something. In Python, <b>print( )</b> sends a message to your screen.",
         goal: "🎯 Goal: Make Python print your name. Change the message inside the quotes!",
         startCode: `# Your first Python command!
 # Change the message below to YOUR name
