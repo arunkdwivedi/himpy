@@ -525,7 +525,17 @@ function showHint() {
         return;
     }
 
-    toast.innerHTML = `<div class="hint-title">💡 HINT <span onclick="this.closest('#hint-toast').classList.remove('show')" style="float:right;cursor:pointer;margin-left:12px;">✕</span></div>${missions[currentMission].hint}`;
+    toast.innerHTML = `
+        <div class="hint-title">💡 HINT</div>
+        ${missions[currentMission].hint}
+        <div style="text-align:right; margin-top:10px;">
+            <button onclick="document.getElementById('hint-toast').classList.remove('show')" 
+                style="background:transparent; border:1px solid #f59e0b; color:#f59e0b; 
+                padding:4px 12px; border-radius:6px; cursor:pointer; font-size:0.8rem;">
+                CLOSE
+            </button>
+        </div>
+    `;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 6000);
 }
