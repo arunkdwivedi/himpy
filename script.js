@@ -7,7 +7,7 @@
 // Python calls: draw_rect(x,y,w,h,color), draw_circle(x,y,r,color), etc.
 const pyCanvas = document.getElementById('py-canvas');
 const ctx2d = pyCanvas.getContext('2d');
-
+let hintTimer = null;
 function clearCanvas() { ctx2d.clearRect(0, 0, pyCanvas.width, pyCanvas.height); }
 
 // JS functions that Python can call via js module
@@ -522,6 +522,7 @@ function showHint() {
 
     if (toast.classList.contains('show')) {
         toast.classList.remove('show');
+        clearTimeout(hintTimer);
         return;
     }
 
@@ -537,7 +538,8 @@ function showHint() {
         </div>
     `;
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 6000);
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(() => toast.classList.remove('show'), 8000);
 }
 
 // ── Tab switching ─────────────────────────────
