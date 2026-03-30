@@ -3,58 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Explorer | Mission Control</title>
-    
+    <title>Python Hero | Mission Control</title>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="loader">
-        <div class="spinner"></div>
-        <p>Booting up Python Engine...</p>
+        <div class="loader-inner">
+            <div class="loader-logo">🚀</div>
+            <div class="loader-title">PYTHON HERO</div>
+            <div class="spinner"></div>
+            <p id="loader-msg">Booting up Python Engine...</p>
+        </div>
     </div>
 
+    <!-- Stars background -->
+    <div class="stars" id="stars"></div>
+
     <header>
-        <div class="logo"><span>🚀</span> Python Hero</div>
+        <div class="logo">🚀 <span>Python</span> Hero</div>
         <div class="stats-bar">
-            <span>Progress:</span>
-            <div class="progress-container">
-                <div id="progress-bar"></div>
+            <div class="xp-display">
+                <span class="xp-label">XP</span>
+                <span id="xp-count">0</span>
+            </div>
+            <div class="progress-wrap">
+                <div class="progress-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <span id="progress-text">0 / 10</span>
             </div>
             <div id="badge-shelf"></div>
         </div>
     </header>
 
     <main>
-        <aside class="sidebar" id="mission-list">
-            </aside>
+        <!-- Left: Mission List -->
+        <aside class="sidebar">
+            <div class="world-label" id="world-label-1">🌍 World 1: The Basics</div>
+            <div id="mission-list-1" class="mission-group"></div>
+            <div class="world-label" id="world-label-2">🔥 World 2: Logic & Loops</div>
+            <div id="mission-list-2" class="mission-group"></div>
+            <div class="world-label" id="world-label-3">🎨 World 3: Creative Code</div>
+            <div id="mission-list-3" class="mission-group"></div>
+        </aside>
 
+        <!-- Center: Editor -->
         <section class="editor-area">
             <div class="mission-card">
+                <div class="mission-meta">
+                    <span class="mission-world-badge" id="mission-world-badge">World 1</span>
+                    <span class="mission-xp-badge" id="mission-xp-badge">+50 XP</span>
+                </div>
                 <h2 id="mission-title">Mission 1</h2>
-                <p id="mission-desc">Instructions loading...</p>
+                <p id="mission-desc">Loading...</p>
+                <div id="mission-goal" class="mission-goal"></div>
             </div>
-            
+
             <div class="code-window">
-                <div class="window-header">code_editor.py</div>
-                <textarea id="code-editor" spellcheck="false"></textarea>
+                <div class="window-header">
+                    <div class="window-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="filename">mission.py</span>
+                </div>
+                <div class="editor-container">
+                    <div class="line-numbers" id="line-numbers">1</div>
+                    <textarea id="code-editor" spellcheck="false" autocomplete="off"></textarea>
+                </div>
                 <div class="action-bar">
                     <button class="btn btn-run" onclick="runCode()">▶ RUN MISSION</button>
-                    <button class="btn btn-hint" onclick="showHint()">💡 NEED A HINT?</button>
+                    <button class="btn btn-hint" onclick="showHint()">💡 HINT</button>
+                    <button class="btn btn-reset" onclick="resetCode()">↺ RESET</button>
                 </div>
             </div>
         </section>
 
-        <aside class="console-area">
-            <div class="console-header">System Output</div>
-            <div id="console-output">Ready for input...</div>
+        <!-- Right: Output -->
+        <aside class="output-area">
+            <div class="output-tabs">
+                <button class="tab-btn active" id="tab-console" onclick="switchTab('console')">📟 Console</button>
+                <button class="tab-btn" id="tab-canvas" onclick="switchTab('canvas')">🎨 Canvas</button>
+            </div>
+            <div id="panel-console" class="output-panel active">
+                <div class="console-inner">
+                    <div id="console-output">Console ready... type your code and press Run!</div>
+                </div>
+            </div>
+            <div id="panel-canvas" class="output-panel" style="display:none;">
+                <canvas id="py-canvas" width="280" height="260"></canvas>
+            </div>
             <div id="celebration-zone"></div>
         </aside>
     </main>
+
+    <!-- Level Up modal -->
+    <div id="levelup-modal" class="modal" style="display:none;">
+        <div class="modal-inner">
+            <div class="modal-emoji" id="levelup-emoji">🏅</div>
+            <h2>LEVEL UP!</h2>
+            <p id="levelup-msg">You earned a badge!</p>
+            <button class="btn btn-run" onclick="closeModal()">AWESOME!</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
