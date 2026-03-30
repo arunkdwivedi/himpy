@@ -519,9 +519,15 @@ function showHint() {
         toast.id = 'hint-toast';
         document.body.appendChild(toast);
     }
-    toast.innerHTML = `<div class="hint-title">💡 HINT</div>${missions[currentMission].hint}`;
+
+    if (toast.classList.contains('show')) {
+        toast.classList.remove('show');
+        return;
+    }
+
+    toast.innerHTML = `<div class="hint-title">💡 HINT <span onclick="this.closest('#hint-toast').classList.remove('show')" style="float:right;cursor:pointer;margin-left:12px;">✕</span></div>${missions[currentMission].hint}`;
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 4000);
+    setTimeout(() => toast.classList.remove('show'), 6000);
 }
 
 // ── Tab switching ─────────────────────────────
