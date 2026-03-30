@@ -140,7 +140,7 @@ main {
     position: relative;
     z-index: 5;
     display: grid;
-    grid-template-columns: 220px 1fr 310px;
+    grid-template-columns: 220px 1fr 450px;
     gap: 12px;
     padding: 12px;
     flex: 1;
