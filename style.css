@@ -12,7 +12,7 @@
     --error: #f43f5e;
     --editor-bg: #020810;
     --border: rgba(0,229,255,0.15);
-    --font-size: 18px;
+    --font-size: 24px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
