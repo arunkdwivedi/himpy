@@ -466,7 +466,7 @@ textarea::selection { background: rgba(0,229,255,0.2); }
     position: fixed;
     bottom: 20px;
     left: 50%;
-    transform: translateX(-50%) translateY(200px);
+    transform: translateX(-50%) translateY(250px);
     background: rgba(17,30,53,0.97);
     border: 1px solid var(--accent);
     color: var(--text);
